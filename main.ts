@@ -5,7 +5,7 @@
 //% weight=10 icon="\uf2c5" color=#7CCD7C
 namespace hicbit_control {
 
-    let sn: number = 0;
+    export let sn: number = 0;
 
     export enum hicbit_key {
         //% block="up"
@@ -23,7 +23,7 @@ namespace hicbit_control {
     */
     //% weight=100 blockGap=20 blockId=hicbit_Init block="Initialize hicbit"
     export function hicbit_Init() {
-        let buf = pins.createBuffer(1);
+        // let buf = pins.createBuffer(1);
         led.enable(false);
 
         serial.redirect(
@@ -1248,7 +1248,7 @@ namespace Display {
         buf[2] = 0x04;        //长度
         buf[3] = hicbit_control.getsncode();//sn码
         buf[4] = 0xD3;                      //CMD
-        buf[5] = 0;
+        buf[5] = 0x00;
         for (let i = 0; i < 6; i++)
             Check_Digit = Check_Digit + buf[i];
         buf[6] = Check_Digit & 0xFF;       //校验
